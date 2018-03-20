@@ -10,6 +10,11 @@ import UIKit
 
 class LGJViewController: UIViewController {
     let menu = MenuView()
+    
+    private var menuTopAnchor: NSLayoutConstraint?
+    private var menuHorizontalCenterAnchor: NSLayoutConstraint?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         menu.viewHeight = 300
@@ -19,19 +24,22 @@ class LGJViewController: UIViewController {
         menu.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(LGJViewController.tap)))
         
         addGesture()
-
+        setup()
     }
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        setup()
+        
     }
     
     func setup() {
-        view.addSubview(menu)
         menu.translatesAutoresizingMaskIntoConstraints = false
-        menu.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        menu.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        view.addSubview(menu)
+        menuTopAnchor = menu.topAnchor.constraint(equalTo: view.topAnchor)
+        menuTopAnchor?.isActive = true
+        menuHorizontalCenterAnchor = menu.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        menuHorizontalCenterAnchor?.isActive = true
     }
     
     func addGesture() {
@@ -43,8 +51,11 @@ class LGJViewController: UIViewController {
         swipeUpGesture.direction = .up
         self.view.addGestureRecognizer(swipeUpGesture)
     }
+    
     func moveDown() {
-        self.menu.topAnchor.constraint(equalTo: self.view.topAnchor, constant: -100).isActive = true
+        // test code
+//        menuTopAnchor?.isActive = true
+        menuTopAnchor?.constant = 0
         UIView.animate(withDuration: 2.0, delay: 0.0, options: .curveEaseInOut, animations: {
             self.view.layoutIfNeeded()
         }) { (done) in
@@ -57,7 +68,7 @@ class LGJViewController: UIViewController {
     }
     
     @objc func swipeDown() {
-        self.menu.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100).isActive = true
+        menuTopAnchor?.constant = 200
         UIView.animate(withDuration: 2.0, delay: 0.0, options: .curveEaseInOut, animations: {
             self.view.layoutIfNeeded()
         }) { (done) in
@@ -66,7 +77,7 @@ class LGJViewController: UIViewController {
     }
     
     @objc func swipeUp() {
-        self.menu.topAnchor.constraint(equalTo: self.view.topAnchor, constant: -100).isActive = true
+        menuTopAnchor?.constant = 0
         UIView.animate(withDuration: 2.0, delay: 0.0, options: .curveEaseInOut, animations: {
             self.view.layoutIfNeeded()
         }) { (done) in
