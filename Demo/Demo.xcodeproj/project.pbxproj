@@ -12,6 +12,8 @@
 		05AA961220611C9A00039269 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05AA961020611C9A00039269 /* Main.storyboard */; };
 		05AA961420611C9A00039269 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05AA961320611C9A00039269 /* Assets.xcassets */; };
 		05AA961720611C9A00039269 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05AA961520611C9A00039269 /* LaunchScreen.storyboard */; };
+		05AA961F20611D5600039269 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AA961E20611D5600039269 /* MenuView.swift */; };
+		05AA962120611DCC00039269 /* LGJViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AA962020611DCC00039269 /* LGJViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		05AA961320611C9A00039269 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05AA961620611C9A00039269 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		05AA961820611C9A00039269 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05AA961E20611D5600039269 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		05AA962020611DCC00039269 /* LGJViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LGJViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 				05AA961320611C9A00039269 /* Assets.xcassets */,
 				05AA961520611C9A00039269 /* LaunchScreen.storyboard */,
 				05AA961820611C9A00039269 /* Info.plist */,
+				05AA961E20611D5600039269 /* MenuView.swift */,
+				05AA962020611DCC00039269 /* LGJViewController.swift */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -137,6 +143,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				05AA960F20611C9A00039269 /* ViewController.swift in Sources */,
+				05AA961F20611D5600039269 /* MenuView.swift in Sources */,
+				05AA962120611DCC00039269 /* LGJViewController.swift in Sources */,
 				05AA960D20611C9A00039269 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
