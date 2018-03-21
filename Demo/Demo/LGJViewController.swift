@@ -13,15 +13,13 @@ class LGJViewController: UIViewController {
     
     private var menuTopAnchor: NSLayoutConstraint?
     private var menuHorizontalCenterAnchor: NSLayoutConstraint?
-    
+    private var topConstant: CGFloat?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         menu.viewHeight = 300
         menu.viewWidth = 210
         menu.backgroundColor = .cyan
-        
-        menu.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(LGJViewController.tap)))
         
         addGesture()
         setup()
@@ -52,23 +50,8 @@ class LGJViewController: UIViewController {
         self.view.addGestureRecognizer(swipeUpGesture)
     }
     
-    func moveDown() {
-        // test code
-//        menuTopAnchor?.isActive = true
-        menuTopAnchor?.constant = 0
-        UIView.animate(withDuration: 2.0, delay: 0.0, options: .curveEaseInOut, animations: {
-            self.view.layoutIfNeeded()
-        }) { (done) in
-            
-        }
-    }
-    
-    @objc func tap() {
-        moveDown()
-    }
-    
     @objc func swipeDown() {
-        menuTopAnchor?.constant = 200
+        menuTopAnchor?.constant = 0
         UIView.animate(withDuration: 2.0, delay: 0.0, options: .curveEaseInOut, animations: {
             self.view.layoutIfNeeded()
         }) { (done) in
@@ -77,7 +60,7 @@ class LGJViewController: UIViewController {
     }
     
     @objc func swipeUp() {
-        menuTopAnchor?.constant = 0
+        menuTopAnchor?.constant = -300
         UIView.animate(withDuration: 2.0, delay: 0.0, options: .curveEaseInOut, animations: {
             self.view.layoutIfNeeded()
         }) { (done) in
