@@ -17,6 +17,10 @@ class LGJViewController: UIViewController {
     private var menuHorizontalCenterAnchor: NSLayoutConstraint?
     private var menuVerticalCenterAnchor: NSLayoutConstraint?
     
+    let swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(LGJViewController.swipeDown))
+    let swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(LGJViewController.swipeUp))
+    let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(LGJViewController.swipeLeft))
+    let swipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(LGJViewController.swipeRight))
     
     private var topConstant: CGFloat?
     
@@ -72,13 +76,19 @@ class LGJViewController: UIViewController {
     }
     
     func addGesture() {
-        let swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(LGJViewController.swipeDown))
+        
         swipeDownGesture.direction = .down
         self.view.addGestureRecognizer(swipeDownGesture)
         
-        let swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(LGJViewController.swipeUp))
+        
         swipeUpGesture.direction = .up
         self.view.addGestureRecognizer(swipeUpGesture)
+        
+//        swipeDownGesture.isEnabled = false
+//        swipeUpGesture.isEnabled = false
+        
+        swipeLeftGesture.direction = .left
+        self.view.addGestureRecognizer(swipeLeftGesture)
     }
     
     @objc func swipeDown() {
@@ -98,6 +108,13 @@ class LGJViewController: UIViewController {
             
         }
     }
+    
+    @objc func swipeLeft() {
+        
+    }
+    @objc func swipeRight() {
+        
+    }
 }
 
 extension LGJViewController {
@@ -106,12 +123,20 @@ extension LGJViewController {
         
         switch UIApplication.shared.statusBarOrientation {
         case .portrait:
-            //do something
+            swipeUpGesture.isEnabled = true
+            swipeDownGesture.isEnabled = true
+            swipeRightGesture.isEnabled = false
+            swipeLeftGesture.isEnabled = false
+            self.view.layoutSubviews()
             break
         case .portraitUpsideDown:
             //do something
             break
         case .landscapeLeft:
+            swipeUpGesture.isEnabled = false
+            swipeDownGesture.isEnabled = false
+            swipeLeftGesture.isEnabled = true
+            swipeRightGesture.isEnabled = true
             self.view.layoutSubviews()
             
             //            menu.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor).isActive = true
