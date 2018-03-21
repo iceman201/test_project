@@ -21,6 +21,12 @@ class MenuView: UIView {
         }
     }
     
+    open var viewRotate: Bool? {
+        didSet {
+            setNeedsLayout()
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -41,6 +47,7 @@ class MenuView: UIView {
     
     override func setNeedsLayout() {
         super.setNeedsLayout()
+
         if let width = viewWidth, let heigh = viewHeight {
             self.widthAnchor.constraint(equalToConstant: width).isActive = true
             self.heightAnchor.constraint(equalToConstant: heigh).isActive = true
