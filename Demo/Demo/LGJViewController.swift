@@ -22,11 +22,7 @@ class LGJViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        menu.viewHeight = 300
-        menu.viewWidth = 210
         menu.backgroundColor = .cyan
-        
-        addGesture()
         setup()
     }
 
@@ -35,7 +31,6 @@ class LGJViewController: UIViewController {
         switch UIApplication.shared.statusBarOrientation {
         case .portrait:
             //do something
-            menu.viewRotate = false
             break
         case .portraitUpsideDown:
             //do something
@@ -43,7 +38,6 @@ class LGJViewController: UIViewController {
         case .landscapeLeft:
             break
         case .landscapeRight:
-            //            menu.trailingAnchor.constraint(greaterThanOrEqualTo: view.trailingAnchor).isActive = true
             menuTopAnchor?.isActive = false
             menuLeadAnchor?.isActive = true
             menu.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
@@ -58,20 +52,55 @@ class LGJViewController: UIViewController {
     
     func setup() {
         menu.translatesAutoresizingMaskIntoConstraints = false
-        
         view.addSubview(menu)
+        
+//        setupTopConstrains()
+        setupLeftConstrains()
+
+        
+    }
+    
+    fileprivate func setupLeftConstrains() {
+        menu.viewRotate = .Left
+        
+        menu.viewHeight = 210
+        menu.viewWidth = 300
+        
+        addLeftGesture()
+        
+        menuLeadAnchor = menu.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+        menuLeadAnchor?.isActive = true
+        
+        menuVerticalCenterAnchor = menu.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        menuVerticalCenterAnchor?.isActive = true
+    }
+    
+    fileprivate func addLeftGesture() {
+        let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(LGJViewController.swipeLeft))
+        swipeLeftGesture.direction = .left
+        self.view.addGestureRecognizer(swipeLeftGesture)
+        
+        let swipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(LGJViewController.swipeRight))
+        swipeRightGesture.direction = .right
+        self.view.addGestureRecognizer(swipeRightGesture)
+    }
+
+    fileprivate func setupTopConstrains() {
+        menu.viewRotate = .Top
+        
+        menu.viewHeight = 300
+        menu.viewWidth = 210
+        
+        addTopGesture()
         
         menuTopAnchor = menu.topAnchor.constraint(equalTo: view.topAnchor)
         menuTopAnchor?.isActive = true
         
         menuHorizontalCenterAnchor = menu.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         menuHorizontalCenterAnchor?.isActive = true
-        
-        menuLeadAnchor = menu.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-        menuTrailAnchor = menu.trailingAnchor.constraint(equalTo: view.trailingAnchor)
     }
     
-    func addGesture() {
+    fileprivate func addTopGesture() {
         let swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(LGJViewController.swipeDown))
         swipeDownGesture.direction = .down
         self.view.addGestureRecognizer(swipeDownGesture)
@@ -98,6 +127,24 @@ class LGJViewController: UIViewController {
             
         }
     }
+    
+    @objc func swipeLeft() {
+        menuLeadAnchor?.constant = -300
+        UIView.animate(withDuration: 2.0, delay: 0.0, options: .curveEaseInOut, animations: {
+            self.view.layoutIfNeeded()
+        }) { (done) in
+            
+        }
+    }
+    
+    @objc func swipeRight() {
+        menuLeadAnchor?.constant = 0
+        UIView.animate(withDuration: 2.0, delay: 0.0, options: .curveEaseInOut, animations: {
+            self.view.layoutIfNeeded()
+        }) { (done) in
+            
+        }
+    }
 }
 
 extension LGJViewController {
@@ -113,11 +160,8 @@ extension LGJViewController {
             break
         case .landscapeLeft:
             self.view.layoutSubviews()
-            
-            //            menu.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor).isActive = true
             break
         case .landscapeRight:
-            //            menu.trailingAnchor.constraint(greaterThanOrEqualTo: view.trailingAnchor).isActive = true
             break
         case .unknown:
             //default

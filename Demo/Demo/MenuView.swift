@@ -8,6 +8,12 @@
 
 import UIKit
 
+enum MenuDirection {
+    case Top
+    case Left
+    case Right
+}
+
 class MenuView: UIView {
     open var viewHeight: CGFloat? {
         didSet {
@@ -21,7 +27,7 @@ class MenuView: UIView {
         }
     }
     
-    open var viewRotate: Bool? {
+    open var viewRotate: MenuDirection? {
         didSet {
             setNeedsLayout()
         }
@@ -56,11 +62,20 @@ class MenuView: UIView {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        let maskPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: [.bottomLeft, .bottomRight], cornerRadii: CGSize(width: 30, height: 20))
-        let maskLayer = CAShapeLayer()
-        maskLayer.frame = self.bounds
-        maskLayer.path  = maskPath.cgPath
-        self.layer.mask = maskLayer
+        
+        if viewRotate == .Left {
+            let maskPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: [.topRight, .bottomRight], cornerRadii: CGSize(width: 30, height: 20))
+            let maskLayer = CAShapeLayer()
+            maskLayer.frame = self.bounds
+            maskLayer.path  = maskPath.cgPath
+            self.layer.mask = maskLayer
+        } else {
+            let maskPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: [.bottomLeft, .bottomRight], cornerRadii: CGSize(width: 30, height: 20))
+            let maskLayer = CAShapeLayer()
+            maskLayer.frame = self.bounds
+            maskLayer.path  = maskPath.cgPath
+            self.layer.mask = maskLayer
+        }
     }
     
     func setup() {
