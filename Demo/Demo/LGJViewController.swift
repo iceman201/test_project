@@ -24,7 +24,6 @@ class LGJViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         menu.backgroundColor = .cyan
-        setup()
     }
 
     override func viewWillLayoutSubviews() {
@@ -39,11 +38,6 @@ class LGJViewController: UIViewController {
         case .landscapeLeft:
             break
         case .landscapeRight:
-            menuTopAnchor?.isActive = false
-            menuLeadAnchor?.isActive = true
-            menu.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-            menu.viewWidth = 300
-            menu.viewHeight = 210
             break
         case .unknown:
             //default
@@ -58,7 +52,6 @@ class LGJViewController: UIViewController {
         view.addSubview(menu)
         view.addSubview(arrowLabel)
         
-        setupTopConstrains()
 //        setupLeftConstrains()
 
         arrowLabel.text = "<"
@@ -165,22 +158,6 @@ class LGJViewController: UIViewController {
 extension LGJViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        
-        switch UIApplication.shared.statusBarOrientation {
-        case .portrait:
-            //do something
             break
-        case .portraitUpsideDown:
-            //do something
-            break
-        case .landscapeLeft:
-            self.view.layoutSubviews()
-            break
-        case .landscapeRight:
-            break
-        case .unknown:
-            //default
-            break
-        }
     }
 }

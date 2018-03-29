@@ -15,21 +15,30 @@ enum MenuDirection {
 }
 
 class MenuView: UIView {
+    private let topPadding = UIApplication.shared.statusBarFrame.height - 15
+    
     open var viewHeight: CGFloat? {
         didSet {
-            setNeedsLayout()
+//            setNeedsLayout()
         }
     }
     
     open var viewWidth: CGFloat? {
         didSet {
-            setNeedsLayout()
+//            setNeedsLayout()
         }
     }
     
     open var viewRotate: MenuDirection? {
         didSet {
-            setNeedsLayout()
+            if viewRotate == MenuDirection.Top {
+                self.viewHeight = 300
+                self.viewWidth = 210
+            } else if viewRotate == MenuDirection.Left {
+                self.viewHeight = 210
+                self.viewWidth = 300
+            }
+//            setNeedsLayout()
         }
     }
     
