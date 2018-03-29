@@ -17,6 +17,7 @@ class LGJViewController: UIViewController {
     private var menuHorizontalCenterAnchor: NSLayoutConstraint?
     private var menuVerticalCenterAnchor: NSLayoutConstraint?
     
+    private let arrowLabel = UILabel()
     
     private var topConstant: CGFloat?
     
@@ -52,12 +53,20 @@ class LGJViewController: UIViewController {
     
     func setup() {
         menu.translatesAutoresizingMaskIntoConstraints = false
+        arrowLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         view.addSubview(menu)
+        view.addSubview(arrowLabel)
         
-//        setupTopConstrains()
-        setupLeftConstrains()
+        setupTopConstrains()
+//        setupLeftConstrains()
 
-        
+        arrowLabel.text = "<"
+        arrowLabel.backgroundColor = .red
+        arrowLabel.font.withSize(30)
+
+        arrowLabel.heightAnchor.constraint(equalToConstant: 30)
+        arrowLabel.widthAnchor.constraint(equalToConstant: 30)
     }
     
     fileprivate func setupLeftConstrains() {
@@ -73,6 +82,9 @@ class LGJViewController: UIViewController {
         
         menuVerticalCenterAnchor = menu.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         menuVerticalCenterAnchor?.isActive = true
+        
+        arrowLabel.leadingAnchor.constraint(equalTo: menu.trailingAnchor).isActive = true
+        arrowLabel.centerYAnchor.constraint(equalTo: menu.centerYAnchor).isActive = true
     }
     
     fileprivate func addLeftGesture() {
@@ -98,6 +110,9 @@ class LGJViewController: UIViewController {
         
         menuHorizontalCenterAnchor = menu.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         menuHorizontalCenterAnchor?.isActive = true
+
+        arrowLabel.topAnchor.constraint(equalTo: menu.bottomAnchor).isActive = true
+        arrowLabel.centerXAnchor.constraint(equalTo: menu.centerXAnchor).isActive = true
     }
     
     fileprivate func addTopGesture() {
