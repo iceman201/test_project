@@ -9,7 +9,7 @@
 import UIKit
 
 class LGJViewController: UIViewController {
-    let menu = MenuView()
+    var menu: MenuView?
     
     private var menuTopAnchor: NSLayoutConstraint?
     private var menuTrailAnchor: NSLayoutConstraint?
@@ -18,41 +18,57 @@ class LGJViewController: UIViewController {
     private var menuVerticalCenterAnchor: NSLayoutConstraint?
     
     private let arrowLabel = UILabel()
-    
+    let topPadding = UIApplication.shared.statusBarFrame.height - 15
     private var topConstant: CGFloat?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        menu.backgroundColor = .cyan
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        checkDirection()
     }
 
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        switch UIApplication.shared.statusBarOrientation {
-        case .portrait:
-            //do something
-            break
-        case .portraitUpsideDown:
-            //do something
-            break
-        case .landscapeLeft:
-            break
-        case .landscapeRight:
-            break
-        case .unknown:
-            //default
-            break
+    fileprivate func checkDirection() {
+        if UIDevice.current.orientation == UIDeviceOrientation.landscapeLeft {
+            if let mView = menu {
+                view.subviews.contains(mView) ? mView.removeFromSuperview() : nil;
+                view.subviews.contains(arrowLabel) ? arrowLabel.removeFromSuperview() : nil;
+            }
+            menu = MenuView()
+            setup()
+            setupLeftConstrains()
+        }
+        else if UIDevice.current.orientation == UIDeviceOrientation.landscapeRight{
+
+        }
+        else if UIDevice.current.orientation == UIDeviceOrientation.portraitUpsideDown {
+            
+        }
+        else if UIDevice.current.orientation == UIDeviceOrientation.portrait {
+            if let m = menu {
+                view.subviews.contains(m) ? m.removeFromSuperview() : nil;
+                view.subviews.contains(arrowLabel) ? arrowLabel.removeFromSuperview() : nil;
+            }
+            menu = MenuView()
+            setup()
+            setupTopConstrains()
         }
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+    }
+    
     func setup() {
-        menu.translatesAutoresizingMaskIntoConstraints = false
+        
+        menu?.translatesAutoresizingMaskIntoConstraints = false
         arrowLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        view.addSubview(menu)
+        view.addSubview(menu!)
         view.addSubview(arrowLabel)
         
-//        setupLeftConstrains()
 
         arrowLabel.text = "<"
         arrowLabel.backgroundColor = .red
@@ -63,21 +79,18 @@ class LGJViewController: UIViewController {
     }
     
     fileprivate func setupLeftConstrains() {
-        menu.viewRotate = .Left
-        
-        menu.viewHeight = 210
-        menu.viewWidth = 300
-        
+        menu?.viewRotate = .Left
+
         addLeftGesture()
         
-        menuLeadAnchor = menu.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+        menuLeadAnchor = menu?.leadingAnchor.constraint(equalTo: view.leadingAnchor)
         menuLeadAnchor?.isActive = true
         
-        menuVerticalCenterAnchor = menu.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        menuVerticalCenterAnchor = menu?.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         menuVerticalCenterAnchor?.isActive = true
         
-        arrowLabel.leadingAnchor.constraint(equalTo: menu.trailingAnchor).isActive = true
-        arrowLabel.centerYAnchor.constraint(equalTo: menu.centerYAnchor).isActive = true
+        arrowLabel.leadingAnchor.constraint(equalTo: (menu?.trailingAnchor)!).isActive = true
+        arrowLabel.centerYAnchor.constraint(equalTo: (menu?.centerYAnchor)!).isActive = true
     }
     
     fileprivate func addLeftGesture() {
@@ -91,21 +104,19 @@ class LGJViewController: UIViewController {
     }
 
     fileprivate func setupTopConstrains() {
-        menu.viewRotate = .Top
-        
-        menu.viewHeight = 300
-        menu.viewWidth = 210
+        menu?.viewRotate = .Top
         
         addTopGesture()
         
-        menuTopAnchor = menu.topAnchor.constraint(equalTo: view.topAnchor)
+        
+        menuTopAnchor = menu?.topAnchor.constraint(equalTo: view.topAnchor, constant: 0)//.constraint(equalTo: view.topAnchor)
         menuTopAnchor?.isActive = true
         
-        menuHorizontalCenterAnchor = menu.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        menuHorizontalCenterAnchor = menu?.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         menuHorizontalCenterAnchor?.isActive = true
 
-        arrowLabel.topAnchor.constraint(equalTo: menu.bottomAnchor).isActive = true
-        arrowLabel.centerXAnchor.constraint(equalTo: menu.centerXAnchor).isActive = true
+        arrowLabel.topAnchor.constraint(equalTo: (menu?.bottomAnchor)!).isActive = true
+        arrowLabel.centerXAnchor.constraint(equalTo: (menu?.centerXAnchor)!).isActive = true
     }
     
     fileprivate func addTopGesture() {
@@ -128,7 +139,7 @@ class LGJViewController: UIViewController {
     }
     
     @objc func swipeUp() {
-        menuTopAnchor?.constant = -300
+        menuTopAnchor?.constant = -300 + topPadding
         UIView.animate(withDuration: 2.0, delay: 0.0, options: .curveEaseInOut, animations: {
             self.view.layoutIfNeeded()
         }) { (done) in
@@ -137,7 +148,7 @@ class LGJViewController: UIViewController {
     }
     
     @objc func swipeLeft() {
-        menuLeadAnchor?.constant = -300
+        menuLeadAnchor?.constant = -300 - topPadding
         UIView.animate(withDuration: 2.0, delay: 0.0, options: .curveEaseInOut, animations: {
             self.view.layoutIfNeeded()
         }) { (done) in
@@ -158,6 +169,7 @@ class LGJViewController: UIViewController {
 extension LGJViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-            break
+        checkDirection()
+
     }
 }
