@@ -36,7 +36,7 @@ class MenuView: UIView {
                 self.viewWidth = 210
             } else if viewRotate == MenuDirection.Left {
                 self.viewHeight = 210
-                self.viewWidth = 300
+                self.viewWidth = 350
             }
 //            setNeedsLayout()
         }

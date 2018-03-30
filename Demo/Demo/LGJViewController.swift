@@ -83,7 +83,7 @@ class LGJViewController: UIViewController {
 
         addLeftGesture()
         
-        menuLeadAnchor = menu?.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+        menuLeadAnchor = menu?.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0)
         menuLeadAnchor?.isActive = true
         
         menuVerticalCenterAnchor = menu?.centerYAnchor.constraint(equalTo: view.centerYAnchor)
@@ -148,7 +148,7 @@ class LGJViewController: UIViewController {
     }
     
     @objc func swipeLeft() {
-        menuLeadAnchor?.constant = -300 - topPadding
+        menuLeadAnchor?.constant = -300 + topPadding - 5
         UIView.animate(withDuration: 2.0, delay: 0.0, options: .curveEaseInOut, animations: {
             self.view.layoutIfNeeded()
         }) { (done) in
