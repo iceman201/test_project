@@ -17,17 +17,8 @@ enum MenuDirection {
 class MenuView: UIView {
     private let topPadding = UIApplication.shared.statusBarFrame.height - 15
     
-    open var viewHeight: CGFloat? {
-        didSet {
-//            setNeedsLayout()
-        }
-    }
-    
-    open var viewWidth: CGFloat? {
-        didSet {
-//            setNeedsLayout()
-        }
-    }
+    open var viewHeight: CGFloat?
+    open var viewWidth: CGFloat?
     
     open var viewRotate: MenuDirection? {
         didSet {

@@ -9,16 +9,16 @@
 import UIKit
 
 class LGJViewController: UIViewController {
-    var menu: MenuView?
-    
     private var menuTopAnchor: NSLayoutConstraint?
     private var menuTrailAnchor: NSLayoutConstraint?
-    private var menuLeadAnchor: NSLayoutConstraint?
+    public var menuLeadAnchor: NSLayoutConstraint?
     private var menuHorizontalCenterAnchor: NSLayoutConstraint?
     private var menuVerticalCenterAnchor: NSLayoutConstraint?
     
+    fileprivate var menu: MenuView?
+    
     private let arrowLabel = UILabel()
-    let topPadding = UIApplication.shared.statusBarFrame.height - 15
+    private let topPadding = UIApplication.shared.statusBarFrame.height - 15
     private var topConstant: CGFloat?
     
     override func viewDidLoad() {
@@ -61,14 +61,13 @@ class LGJViewController: UIViewController {
         super.viewWillLayoutSubviews()
     }
     
-    func setup() {
+    fileprivate func setup() {
         
         menu?.translatesAutoresizingMaskIntoConstraints = false
         arrowLabel.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(menu!)
         view.addSubview(arrowLabel)
-        
 
         arrowLabel.text = "<"
         arrowLabel.backgroundColor = .red
@@ -80,15 +79,11 @@ class LGJViewController: UIViewController {
     
     fileprivate func setupLeftConstrains() {
         menu?.viewRotate = .Left
-
         addLeftGesture()
-        
         menuLeadAnchor = menu?.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0)
         menuLeadAnchor?.isActive = true
-        
         menuVerticalCenterAnchor = menu?.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         menuVerticalCenterAnchor?.isActive = true
-        
         arrowLabel.leadingAnchor.constraint(equalTo: (menu?.trailingAnchor)!).isActive = true
         arrowLabel.centerYAnchor.constraint(equalTo: (menu?.centerYAnchor)!).isActive = true
     }
@@ -105,16 +100,11 @@ class LGJViewController: UIViewController {
 
     fileprivate func setupTopConstrains() {
         menu?.viewRotate = .Top
-        
         addTopGesture()
-        
-        
         menuTopAnchor = menu?.topAnchor.constraint(equalTo: view.topAnchor, constant: 0)//.constraint(equalTo: view.topAnchor)
         menuTopAnchor?.isActive = true
-        
         menuHorizontalCenterAnchor = menu?.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         menuHorizontalCenterAnchor?.isActive = true
-
         arrowLabel.topAnchor.constraint(equalTo: (menu?.bottomAnchor)!).isActive = true
         arrowLabel.centerXAnchor.constraint(equalTo: (menu?.centerXAnchor)!).isActive = true
     }
@@ -170,6 +160,5 @@ extension LGJViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         checkDirection()
-
     }
 }
