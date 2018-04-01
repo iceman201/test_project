@@ -19,7 +19,6 @@ class MenuView: UIView {
     
     open var viewHeight: CGFloat?
     open var viewWidth: CGFloat?
-    
     open var viewRotate: MenuDirection? {
         didSet {
             if viewRotate == MenuDirection.Top {
@@ -29,7 +28,6 @@ class MenuView: UIView {
                 self.viewHeight = 210
                 self.viewWidth = 350
             }
-//            setNeedsLayout()
         }
     }
     
@@ -79,9 +77,7 @@ class MenuView: UIView {
     }
     
     func setup() {
-        self.backgroundColor = .cyan
-        
-//        This is test code
+        self.backgroundColor = .black
         let textview = UITextView()
         textview.text = "Make a symbolic breakpoint at UIViewAlertForUnsatisfiableConstraints to catch this in the debugger.        The methods in the UIConstraintBasedLayoutDebugging category on UIView listed in <UIKit/UIView.h> may also be helpful.        2018-03-21 00:49:10.106566+1300 Demo[61512:70926821] [LayoutConstraints] Unable to simultaneously satisfy constraints."
         self.addSubview(textview)
