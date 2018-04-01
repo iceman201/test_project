@@ -11,7 +11,7 @@ import UIKit
 class LGJViewController: UIViewController {
     private var menuTopAnchor: NSLayoutConstraint?
     private var menuTrailAnchor: NSLayoutConstraint?
-    public var menuLeadAnchor: NSLayoutConstraint?
+    private var menuLeadAnchor: NSLayoutConstraint?
     private var menuHorizontalCenterAnchor: NSLayoutConstraint?
     private var menuVerticalCenterAnchor: NSLayoutConstraint?
     
