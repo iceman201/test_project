@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05A75A862076000500A90F02 /* MenuImage.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 05A75A852076000500A90F02 /* MenuImage.bundle */; };
 		05AA960D20611C9A00039269 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AA960C20611C9A00039269 /* AppDelegate.swift */; };
 		05AA960F20611C9A00039269 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AA960E20611C9A00039269 /* ViewController.swift */; };
 		05AA961220611C9A00039269 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05AA961020611C9A00039269 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05A75A852076000500A90F02 /* MenuImage.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MenuImage.bundle; sourceTree = "<group>"; };
 		05AA960920611C9A00039269 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05AA960C20611C9A00039269 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05AA960E20611C9A00039269 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -39,6 +41,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05A75A842075FF5C00A90F02 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				05AA962020611DCC00039269 /* LGJViewController.swift */,
+				05AA961E20611D5600039269 /* MenuView.swift */,
+				05A75A852076000500A90F02 /* MenuImage.bundle */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		05AA960020611C9A00039269 = {
 			isa = PBXGroup;
 			children = (
@@ -64,8 +76,7 @@
 				05AA961320611C9A00039269 /* Assets.xcassets */,
 				05AA961520611C9A00039269 /* LaunchScreen.storyboard */,
 				05AA961820611C9A00039269 /* Info.plist */,
-				05AA961E20611D5600039269 /* MenuView.swift */,
-				05AA962020611DCC00039269 /* LGJViewController.swift */,
+				05A75A842075FF5C00A90F02 /* Source */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -132,6 +143,7 @@
 				05AA961720611C9A00039269 /* LaunchScreen.storyboard in Resources */,
 				05AA961420611C9A00039269 /* Assets.xcassets in Resources */,
 				05AA961220611C9A00039269 /* Main.storyboard in Resources */,
+				05A75A862076000500A90F02 /* MenuImage.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
