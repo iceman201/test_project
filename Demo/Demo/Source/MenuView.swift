@@ -78,8 +78,8 @@ class MenuView: UIView {
     
     func setup() {
         self.backgroundColor = .black
-        let textview = UITextView()
-        textview.text = "Make a symbolic breakpoint at UIViewAlertForUnsatisfiableConstraints to catch this in the debugger.        The methods in the UIConstraintBasedLayoutDebugging category on UIView listed in <UIKit/UIView.h> may also be helpful.        2018-03-21 00:49:10.106566+1300 Demo[61512:70926821] [LayoutConstraints] Unable to simultaneously satisfy constraints."
+        let textview = TableMenu()
+
         self.addSubview(textview)
         textview.backgroundColor = .clear
         textview.translatesAutoresizingMaskIntoConstraints = false
