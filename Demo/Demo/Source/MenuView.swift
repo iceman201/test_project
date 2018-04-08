@@ -14,9 +14,15 @@ enum MenuDirection {
     case Right
 }
 
+enum MenuType {
+    case Column
+    case Icon
+}
+
 class MenuView: UIView {
     private let topPadding = UIApplication.shared.statusBarFrame.height - 15
     
+    open var menuStyle: MenuType!
     open var viewHeight: CGFloat?
     open var viewWidth: CGFloat?
     open var viewRotate: MenuDirection? {
@@ -33,6 +39,7 @@ class MenuView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        menuStyle = .Column
         
         if UIDevice().userInterfaceIdiom == .phone {
             switch UIScreen.main.nativeBounds.height {
@@ -78,7 +85,7 @@ class MenuView: UIView {
     
     func setup() {
         self.backgroundColor = .black
-        let textview = TableMenu()
+        let textview = menuStyle == .Column ? TableMenu() : UITextView()
 
         self.addSubview(textview)
         textview.backgroundColor = .clear
