@@ -20,6 +20,7 @@ class TableMenu: UITableView, UITableViewDelegate, UITableViewDataSource {
         super.init(frame: frame, style: style)
         self.delegate = self
         self.dataSource = self
+        self.register(LGJTableMenuCell.self, forCellReuseIdentifier: menuCellIdentifier)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -31,15 +32,14 @@ class TableMenu: UITableView, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return 3//items.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: menuCellIdentifier)
-        cell.textLabel?.text = "test haha"
-        cell.textLabel?.textColor = .white
-        cell.backgroundColor = .clear
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: menuCellIdentifier, for: indexPath) as? LGJTableMenuCell {
+            return cell
+        }
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
