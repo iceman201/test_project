@@ -85,8 +85,20 @@ class MenuView: UIView {
     
     func setup() {
         self.backgroundColor = .black
-        let textview = menuStyle == .Column ? TableMenu() : UITextView()
-
+        let tableMenu = TableMenu()
+        let textview = menuStyle == .Column ? tableMenu : UITextView()
+        
+        let image1 = UIImage(named: "001-communication", in: Bundle(path: Bundle.main.path(forResource: "MenuImage", ofType: "bundle")!), compatibleWith: nil)
+        let image2 = UIImage(named: "002-arrows", in: Bundle(path: Bundle.main.path(forResource: "MenuImage", ofType: "bundle")!), compatibleWith: nil)
+        let image3 = UIImage(named: "003-favorite", in: Bundle(path: Bundle.main.path(forResource: "MenuImage", ofType: "bundle")!), compatibleWith: nil)
+        let image4 = UIImage(named: "004-social", in: Bundle(path: Bundle.main.path(forResource: "MenuImage", ofType: "bundle")!), compatibleWith: nil)
+        let image5 = UIImage(named: "005-multimedia", in: Bundle(path: Bundle.main.path(forResource: "MenuImage", ofType: "bundle")!), compatibleWith: nil)
+        let image6 = UIImage(named: "006-delete", in: Bundle(path: Bundle.main.path(forResource: "MenuImage", ofType: "bundle")!), compatibleWith: nil)
+        let testTitle = ["communication", "arrows", "favorite", "social", "multimedia", "delete"]
+        
+        tableMenu.imageArray = [image1, image2, image3, image4, image5, image6] as! [UIImage]
+        tableMenu.items = testTitle
+        
         self.addSubview(textview)
         textview.backgroundColor = .clear
         textview.translatesAutoresizingMaskIntoConstraints = false

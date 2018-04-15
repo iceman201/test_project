@@ -14,12 +14,15 @@ class TableMenu: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     // Private properties
     var items: [String] = []
+    var imageArray: [UIImage] = []
     var selectedIndexPath: Int?
     
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
         self.delegate = self
         self.dataSource = self
+        self.separatorColor = .clear
+        
         self.register(LGJTableMenuCell.self, forCellReuseIdentifier: menuCellIdentifier)
     }
     
@@ -36,7 +39,13 @@ class TableMenu: UITableView, UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if let cell = tableView.dequeueReusableCell(withIdentifier: menuCellIdentifier, for: indexPath) as? LGJTableMenuCell {
+            cell.menuTitle.text = items[indexPath.row]
+            cell.menuTitle.textColor = .white
+            cell.iconImage = imageArray[indexPath.row]
+            cell.type = .Image
+            
             return cell
         }
         return UITableViewCell()

@@ -16,17 +16,41 @@ enum MenuIconType {
 class LGJTableMenuCell: UITableViewCell {
     let menuTitle: UILabel = UILabel()
     let leftContainer: UIView = UIView()
-    var type: MenuIconType?
+    
+    var iconImage: UIImage?
+    var iconFont: String = ""
+    private var currentType: MenuIconType?
+    
+    var type: MenuIconType? {
+        didSet {
+            if type == .Image {
+                let menuIcon = UIImageView(image: iconImage)
+                leftContainer.addSubview(menuIcon)
+                menuIcon.translatesAutoresizingMaskIntoConstraints = false
+                menuIcon.leadingAnchor.anchorWithOffset(to: leftContainer.leadingAnchor).constraint(equalToConstant: 0).isActive = true
+                menuIcon.trailingAnchor.anchorWithOffset(to: leftContainer.trailingAnchor).constraint(equalToConstant: 0).isActive = true
+                menuIcon.topAnchor.constraint(equalTo: leftContainer.topAnchor, constant: 0).isActive = true
+                menuIcon.bottomAnchor.constraint(equalTo: leftContainer.bottomAnchor, constant: 0).isActive = true
+            }
+            if type == .AttributeText {
+                let menuIcon = UILabel()
+                menuIcon.text = iconFont
+                leftContainer.addSubview(menuIcon)
+                menuIcon.translatesAutoresizingMaskIntoConstraints = false
+                menuIcon.leadingAnchor.anchorWithOffset(to: leftContainer.leadingAnchor).constraint(equalToConstant: 0).isActive = true
+                menuIcon.trailingAnchor.anchorWithOffset(to: leftContainer.trailingAnchor).constraint(equalToConstant: 0).isActive = true
+                menuIcon.topAnchor.constraint(equalTo: leftContainer.topAnchor, constant: 0).isActive = true
+                menuIcon.bottomAnchor.constraint(equalTo: leftContainer.bottomAnchor, constant: 0).isActive = true
+            }
+        }
+    }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        leftContainer.backgroundColor = .yellow
-        type = .Image
+        self.backgroundColor = .clear
         
         menuTitle.textAlignment = .center
         menuTitle.font.withSize(15)
-        
-        
         
         self.addSubview(leftContainer)
         self.addSubview(menuTitle)
@@ -42,7 +66,6 @@ class LGJTableMenuCell: UITableViewCell {
         menuTitle.leadingAnchor.anchorWithOffset(to: leftContainer.trailingAnchor).constraint(equalToConstant: 0).isActive = true
         menuTitle.trailingAnchor.anchorWithOffset(to: self.trailingAnchor).constraint(equalToConstant: 0).isActive = true
         menuTitle.heightAnchor.constraint(equalToConstant: 35).isActive = true
-        menuTitle.backgroundColor = .cyan
     }
     
     required init?(coder aDecoder: NSCoder) {
