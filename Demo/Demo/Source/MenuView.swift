@@ -25,6 +25,7 @@ class MenuView: UIView {
     open var menuStyle: MenuType!
     open var viewHeight: CGFloat?
     open var viewWidth: CGFloat?
+    open let tableMenu = TableMenu()
     open var viewRotate: MenuDirection? {
         didSet {
             if viewRotate == MenuDirection.Top {
@@ -36,7 +37,7 @@ class MenuView: UIView {
             }
         }
     }
-    open var didSelectItemAtIndexHandler: ((_ indexPath: Int) -> ())?
+    var didSelectItemAtIndexHandler: ((_ indexPath: Int) -> ())?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -86,8 +87,7 @@ class MenuView: UIView {
     
     func setup() {
         self.backgroundColor = .black
-        let tableMenu = TableMenu()
-        
+
         let textview = menuStyle == .Column ? tableMenu : UITextView()
         
         let image1 = UIImage(named: "001-communication", in: Bundle(path: Bundle.main.path(forResource: "MenuImage", ofType: "bundle")!), compatibleWith: nil)
@@ -101,14 +101,12 @@ class MenuView: UIView {
         tableMenu.imageArray = [image1, image2, image3, image4, image5, image6] as! [UIImage]
         tableMenu.items = testTitle
         tableMenu.selectRowAtIndexPathHandler = { [weak self] (indexPath:Int) -> () in
-            if let weakSelf = self {
-                
-                weakSelf.didSelectItemAtIndexHandler!(indexPath)
-                // TODO: call animation move back
-            } else {
-                assert(false, "error: cant get self")
-                
-            }
+                if let weakSelf = self {
+                    weakSelf.didSelectItemAtIndexHandler!(indexPath)
+                    // TODO: call animation move back
+                } else {
+                    assert(false, "error: cant get self")
+                }
         }
         
         self.addSubview(textview)
