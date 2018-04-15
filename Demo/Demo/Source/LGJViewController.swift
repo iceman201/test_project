@@ -15,7 +15,7 @@ class LGJViewController: UIViewController {
     private var menuHorizontalCenterAnchor: NSLayoutConstraint?
     private var menuVerticalCenterAnchor: NSLayoutConstraint?
     
-    fileprivate var menu: MenuView?
+    var menu: MenuView?
     
     private let arrowLabel = UILabel()
     private let topPadding = UIApplication.shared.statusBarFrame.height - 45
@@ -36,7 +36,6 @@ class LGJViewController: UIViewController {
                 view.subviews.contains(mView) ? mView.removeFromSuperview() : nil;
                 view.subviews.contains(arrowLabel) ? arrowLabel.removeFromSuperview() : nil;
             }
-            menu = MenuView()
             setup()
             setupLeftConstrains()
         }
@@ -51,16 +50,14 @@ class LGJViewController: UIViewController {
                 view.subviews.contains(m) ? m.removeFromSuperview() : nil;
                 view.subviews.contains(arrowLabel) ? arrowLabel.removeFromSuperview() : nil;
             }
-            menu = MenuView()
-            menu?.didSelectItemAtIndexHandler = {(indexPath: Int) -> Void in
-                print("Did select item at index: \(indexPath)")
-            }
             setup()
             setupTopConstrains()
         }
     }
     
+    
     fileprivate func setup() {
+        menu = MenuView()
         menu?.translatesAutoresizingMaskIntoConstraints = false
         arrowLabel.translatesAutoresizingMaskIntoConstraints = false
         
