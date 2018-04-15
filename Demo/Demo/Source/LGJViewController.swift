@@ -18,7 +18,7 @@ class LGJViewController: UIViewController {
     fileprivate var menu: MenuView?
     
     private let arrowLabel = UILabel()
-    private let topPadding = UIApplication.shared.statusBarFrame.height - 15
+    private let topPadding = UIApplication.shared.statusBarFrame.height - 45
     private var topConstant: CGFloat?
     
     override func viewDidLoad() {
