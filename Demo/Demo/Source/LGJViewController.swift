@@ -23,9 +23,6 @@ class LGJViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        menu?.didSelectItemAtIndexHandler = {(indexPath:Int) -> Void in
-            print("Did select item at index: \(indexPath)")
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -55,17 +52,15 @@ class LGJViewController: UIViewController {
                 view.subviews.contains(arrowLabel) ? arrowLabel.removeFromSuperview() : nil;
             }
             menu = MenuView()
+            menu?.didSelectItemAtIndexHandler = {(indexPath: Int) -> Void in
+                print("Did select item at index: \(indexPath)")
+            }
             setup()
             setupTopConstrains()
         }
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-    }
-    
     fileprivate func setup() {
-        
         menu?.translatesAutoresizingMaskIntoConstraints = false
         arrowLabel.translatesAutoresizingMaskIntoConstraints = false
         

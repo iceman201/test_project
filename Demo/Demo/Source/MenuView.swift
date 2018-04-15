@@ -100,13 +100,14 @@ class MenuView: UIView {
         
         tableMenu.imageArray = [image1, image2, image3, image4, image5, image6] as! [UIImage]
         tableMenu.items = testTitle
-        
         tableMenu.selectRowAtIndexPathHandler = { [weak self] (indexPath:Int) -> () in
             if let weakSelf = self {
+                
                 weakSelf.didSelectItemAtIndexHandler!(indexPath)
-                weakSelf.alpha = 0
+                // TODO: call animation move back
             } else {
                 assert(false, "error: cant get self")
+                
             }
         }
         
