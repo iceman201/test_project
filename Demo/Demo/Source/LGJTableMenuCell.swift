@@ -25,12 +25,13 @@ class LGJTableMenuCell: UITableViewCell {
         didSet {
             if type == .Image {
                 let menuIcon = UIImageView(image: iconImage)
+                menuIcon.contentMode = .scaleAspectFit
                 leftContainer.addSubview(menuIcon)
                 menuIcon.translatesAutoresizingMaskIntoConstraints = false
-                menuIcon.leadingAnchor.anchorWithOffset(to: leftContainer.leadingAnchor).constraint(equalToConstant: 0).isActive = true
-                menuIcon.trailingAnchor.anchorWithOffset(to: leftContainer.trailingAnchor).constraint(equalToConstant: 0).isActive = true
-                menuIcon.topAnchor.constraint(equalTo: leftContainer.topAnchor, constant: 0).isActive = true
-                menuIcon.bottomAnchor.constraint(equalTo: leftContainer.bottomAnchor, constant: 0).isActive = true
+                menuIcon.leadingAnchor.anchorWithOffset(to: leftContainer.leadingAnchor).constraint(equalToConstant: -5).isActive = true
+                menuIcon.trailingAnchor.anchorWithOffset(to: leftContainer.trailingAnchor).constraint(equalToConstant: 5).isActive = true
+                menuIcon.topAnchor.constraint(equalTo: leftContainer.topAnchor, constant: 5).isActive = true
+                menuIcon.bottomAnchor.constraint(equalTo: leftContainer.bottomAnchor, constant: -5).isActive = true
             }
             if type == .AttributeText {
                 let menuIcon = UILabel()
