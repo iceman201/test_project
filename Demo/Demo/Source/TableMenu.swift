@@ -10,12 +10,13 @@ import UIKit
 
 class TableMenu: UITableView, UITableViewDelegate, UITableViewDataSource {
     private let menuCellIdentifier = "menuCell"
-    var selectRowAtIndexPathHandler: ((_ indexPath: Int) -> ())?
     
     // Private properties
     var items: [String] = []
     var imageArray: [UIImage] = []
+    
     var selectedIndexPath: Int?
+    var selectRowAtIndexPathHandler: ((_ indexPath: Int) -> ())?
     
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
@@ -55,8 +56,13 @@ class TableMenu: UITableView, UITableViewDelegate, UITableViewDataSource {
         selectedIndexPath = indexPath.row
         self.selectRowAtIndexPathHandler?(indexPath.row)
         self.reloadData()
-        let cell = tableView.cellForRow(at: indexPath)
-        // do customization of cell selection
+        let cell = tableView.cellForRow(at: indexPath) as? LGJTableMenuCell
+        
+        // TODO: add select color?
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        //TODO: Deselect cell color?
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

@@ -23,6 +23,9 @@ class LGJViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        menu?.didSelectItemAtIndexHandler = {(indexPath:Int) -> Void in
+            print("Did select item at index: \(indexPath)")
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
