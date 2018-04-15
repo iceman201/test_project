@@ -28,7 +28,7 @@ class MenuView: UIView {
     open var viewRotate: MenuDirection? {
         didSet {
             if viewRotate == MenuDirection.Top {
-                self.viewHeight = 300
+                self.viewHeight = 330
                 self.viewWidth = 210
             } else if viewRotate == MenuDirection.Left {
                 self.viewHeight = 210
@@ -105,8 +105,8 @@ class MenuView: UIView {
         textview.isUserInteractionEnabled = false
         textview.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
         textview.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
-        textview.topAnchor.constraint(equalTo: self.topAnchor, constant: 50).isActive = true
-        textview.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
+        textview.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
+        textview.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
     }
     
     
