@@ -21,6 +21,13 @@ class LGJViewController: UIViewController {
     private let topPadding = UIApplication.shared.statusBarFrame.height - 45
     private var topConstant: CGFloat?
     
+    lazy var rollbackMenu = {
+        [unowned self] in
+        if UIDevice.current.orientation == UIDeviceOrientation.portrait {
+            self.swipeUp()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -28,6 +35,11 @@ class LGJViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         checkDirection()
+        menu?.didSelectAnimationHandler = { (finished:Bool) -> Void in
+            if (finished) {
+                self.rollbackMenu()
+            }
+        }
     }
 
     fileprivate func checkDirection() {
@@ -39,22 +51,21 @@ class LGJViewController: UIViewController {
             setup()
             setupLeftConstrains()
         }
-        else if UIDevice.current.orientation == UIDeviceOrientation.landscapeRight{
+        else if UIDevice.current.orientation == UIDeviceOrientation.landscapeRight {
 
         }
         else if UIDevice.current.orientation == UIDeviceOrientation.portraitUpsideDown {
             
         }
         else if UIDevice.current.orientation == UIDeviceOrientation.portrait {
-            if let m = menu {
-                view.subviews.contains(m) ? m.removeFromSuperview() : nil;
+            if let mView = menu {
+                view.subviews.contains(mView) ? mView.removeFromSuperview() : nil;
                 view.subviews.contains(arrowLabel) ? arrowLabel.removeFromSuperview() : nil;
             }
             setup()
             setupTopConstrains()
         }
     }
-    
     
     fileprivate func setup() {
         menu = MenuView()
