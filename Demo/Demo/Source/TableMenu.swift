@@ -17,6 +17,7 @@ class TableMenu: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     var selectedIndexPath: Int?
     var selectRowAtIndexPathHandler: ((_ indexPath: Int) -> ())?
+    var selectRowAnimationHandler: ((_ finished: Bool) -> ())?
     
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
@@ -55,6 +56,7 @@ class TableMenu: UITableView, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedIndexPath = indexPath.row
         self.selectRowAtIndexPathHandler?(indexPath.row)
+        self.selectRowAnimationHandler?(true)
         self.reloadData()
         let cell = tableView.cellForRow(at: indexPath) as? LGJTableMenuCell
         
