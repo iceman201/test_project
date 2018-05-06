@@ -19,6 +19,7 @@ class LGJTableMenuCell: UITableViewCell {
     
     var iconImage: UIImage?
     var iconFont: String = ""
+    
     private var currentType: MenuIconType?
     
     var type: MenuIconType? {

@@ -27,7 +27,14 @@ class MenuView: UIView {
     open var viewWidth: CGFloat?
     open let tableMenu = TableMenu()
     open var iconImages: [UIImage]?
-    open var titles: [String]?
+
+    open var titles: [String]? {
+        didSet {
+            // Refresh
+            setup()
+        }
+    }
+
     open var viewRotate: MenuDirection? {
         didSet {
             if viewRotate == MenuDirection.Top {
@@ -51,8 +58,8 @@ class MenuView: UIView {
         if UIDevice().userInterfaceIdiom == .phone {
             switch UIScreen.main.nativeBounds.height {
             case 2436:
+                // iPhone X
                 setup()
-                print("iPhone X")
             default:
                 assertionFailure("isn't iphone X")
             }
@@ -107,8 +114,6 @@ class MenuView: UIView {
                 if let weakSelf = self {
                     weakSelf.didSelectItemAtIndexHandler!(indexPath)
                     weakSelf.didSelectAnimationHandler!(true)
-                    // TODO: call animation move back
-                    
                 } else {
                     assert(false, "error: cant get self")
                 }

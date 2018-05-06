@@ -70,7 +70,6 @@ class LGJViewController: UIViewController {
     fileprivate func setup() {
         menu = MenuView()
         menu?.translatesAutoresizingMaskIntoConstraints = false
-        arrowLabel.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(menu!)
         view.addSubview(arrowLabel)
@@ -78,7 +77,7 @@ class LGJViewController: UIViewController {
         arrowLabel.text = "<"
         arrowLabel.backgroundColor = .red
         arrowLabel.font.withSize(30)
-
+        arrowLabel.translatesAutoresizingMaskIntoConstraints = false
         arrowLabel.heightAnchor.constraint(equalToConstant: 30)
         arrowLabel.widthAnchor.constraint(equalToConstant: 30)
     }
@@ -96,18 +95,17 @@ class LGJViewController: UIViewController {
     
     fileprivate func addLeftGesture() {
         let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(LGJViewController.swipeLeft))
-        swipeLeftGesture.direction = .left
-        self.view.addGestureRecognizer(swipeLeftGesture)
-        
         let swipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(LGJViewController.swipeRight))
+        swipeLeftGesture.direction = .left
         swipeRightGesture.direction = .right
+        self.view.addGestureRecognizer(swipeLeftGesture)
         self.view.addGestureRecognizer(swipeRightGesture)
     }
 
     fileprivate func setupTopConstrains() {
         menu?.viewRotate = .Top
         addTopGesture()
-        menuTopAnchor = menu?.topAnchor.constraint(equalTo: view.topAnchor, constant: 0)//.constraint(equalTo: view.topAnchor)
+        menuTopAnchor = menu?.topAnchor.constraint(equalTo: view.topAnchor, constant: -300 + topPadding)
         menuTopAnchor?.isActive = true
         menuHorizontalCenterAnchor = menu?.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         menuHorizontalCenterAnchor?.isActive = true
@@ -117,11 +115,10 @@ class LGJViewController: UIViewController {
     
     fileprivate func addTopGesture() {
         let swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(LGJViewController.swipeDown))
-        swipeDownGesture.direction = .down
-        self.view.addGestureRecognizer(swipeDownGesture)
-        
         let swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(LGJViewController.swipeUp))
+        swipeDownGesture.direction = .down
         swipeUpGesture.direction = .up
+        self.view.addGestureRecognizer(swipeDownGesture)
         self.view.addGestureRecognizer(swipeUpGesture)
     }
     
