@@ -27,13 +27,14 @@ class MenuView: UIView {
     open var viewWidth: CGFloat?
     open let tableMenu = TableMenu()
     open var iconImages: [UIImage]?
+
     open var titles: [String]? {
         didSet {
             // Refresh
             setup()
         }
     }
-    
+
     open var viewRotate: MenuDirection? {
         didSet {
             if viewRotate == MenuDirection.Top {
