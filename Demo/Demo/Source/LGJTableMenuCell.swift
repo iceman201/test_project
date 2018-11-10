@@ -1,6 +1,6 @@
 //
 //  LGJTableMenuCell.swift
-//  Demo
+//  DraggetMenu
 //
 //  Created by Liguo Jiao on 15/04/18.
 //  Copyright © 2018 Liguo Jiao. All rights reserved.
