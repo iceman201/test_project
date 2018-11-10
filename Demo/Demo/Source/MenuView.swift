@@ -25,7 +25,7 @@ class MenuView: UIView {
     open var menuStyle: MenuType!
     open var viewHeight: CGFloat?
     open var viewWidth: CGFloat?
-    open let tableMenu = TableMenu()
+    public let tableMenu = TableMenu()
     open var iconImages: [UIImage]?
 
     open var titles: [String]? {
