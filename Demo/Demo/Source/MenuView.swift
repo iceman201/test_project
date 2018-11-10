@@ -1,6 +1,6 @@
 //
 //  MenuView.swift
-//  Demo
+//  DraggetMenu
 //
 //  Created by Liguo Jiao on 20/03/18.
 //  Copyright © 2018 Liguo Jiao. All rights reserved.
